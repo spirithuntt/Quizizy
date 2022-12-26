@@ -118,7 +118,7 @@ function startQuiz(){
   showProgress();
 }
 
-hamid();
+hamid(questions);
 function showQuestion(){
   let q = questions[questionIndex];
   question.innerHTML = q.question;
@@ -147,13 +147,9 @@ function nextQuestion(){
     };
   }
 }
-function hamid(){
-  for (let i = 0; i < questions.length; i++) {
-    let randIndex=Math.floor(Math.random()*questions.length);
-    // console.log(randIndex);
-    [questions[i],questions[randIndex]]=[questions[randIndex],questions[i]];
-}
 
+function hamid(array) {
+  array.sort(() => Math.random() - 0.5);
 }
 
 function checkAnswer(answer){

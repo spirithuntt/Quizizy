@@ -314,7 +314,6 @@ margin: 20px auto;
 .wrongQuestionContainer
 {
   border: 3px solid $secondary-color;
-  @include set-background($primary-color);
   text-align: center;
   font-size: 20px;
   font-weight: bold;
@@ -329,10 +328,10 @@ margin: 20px auto;
   @include set-text-color($headline-color);
 }
 #correctAnswer{
-  color: #FD841F;
+  color: $secondary-color;
 }
-/* RESPONSIVE */
 
+/* RESPONSIVE */
 @media (max-width: 1600px) {
   .cards {
     justify-content: center;

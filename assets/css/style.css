@@ -267,7 +267,6 @@ section {
 
 .wrongQuestionContainer {
   border: 3px solid #ff8906;
-  background-color: #263447;
   text-align: center;
   font-size: 20px;
   font-weight: bold;
@@ -284,7 +283,7 @@ section {
 }
 
 #correctAnswer {
-  color: #FD841F;
+  color: #ff8906;
 }
 
 /* RESPONSIVE */
