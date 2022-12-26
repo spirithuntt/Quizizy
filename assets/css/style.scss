@@ -1,0 +1,357 @@
+// _config.scss
+$font-stack: Arial, Helvetica, sans-serif;
+$light-color: #f4f4f4;
+$primary-color: #263447;
+// $primary-color: #e0ffff;
+$danger-color: #0b0b10;
+$secondary-color: #ff8906;
+$dark-color: rgba(0, 0, 0, 0.4);
+$headline-color: #a7a9be;
+$main-color : #222F40;
+
+
+@mixin set-text-color($color)
+{
+  color: $color;
+}
+
+
+// Set background & text color
+@mixin set-background($color) {
+  background-color: $color;
+}
+
+
+*{
+  @include set-background($main-color);
+  font-family: $font-stack;
+  line-height: 1.6;
+}
+img{
+  width: 50%;
+}
+
+a {
+  text-decoration: none;
+}
+
+.showcase{
+  //set a color for the whole page background
+  @include set-text-color($light-color);
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    ul {
+      display: flex;
+      list-style-type: none;
+    }
+
+    li{
+      padding: 15px;
+    }
+
+    a{
+      @include set-text-color($light-color);
+    }
+
+    a:hover {
+      color: $danger-color;
+    }
+  }
+
+  &-content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+
+    img {
+      width: 50%;
+    }
+
+    h1 {
+      font-size: 50px;
+      line-height: 1.2;
+    }
+  }
+}
+
+// _utilities.scss
+.container {
+  padding: 0 40px;
+  margin: 0 auto;
+
+}
+%btn{
+  display: inline-block;
+  border-radius: 5px;
+  padding: 8px 20px;
+  margin: 3px;
+
+  &:hover {
+    transform: scale(.98);
+  }
+}
+
+.btn-primary{
+  @extend %btn;
+  @include set-background(lighten($primary-color, 10%));
+}
+
+.btn-danger{
+  @extend %btn;
+  @include set-background($danger-color);
+}
+
+#start:hover {
+  box-shadow: 0px 6px 10px $dark-color;
+  transform: scale(1.01);
+}
+#btn-reload{
+  @extend %btn;
+  display: flex;
+  @include set-background($primary-color);
+  border: 1px solid $secondary-color;
+  font-size: 30px;
+  font-weight: bold;
+  @include set-text-color($light-color);
+  text-align: center;
+  margin: 20px auto;
+  font-size: 20px;
+  font-weight: bold;
+  @include set-text-color($light-color);
+}
+
+// /* HEADING */
+
+.question{
+  text-align: center;
+  margin: 100px;
+  font-size: 35px;
+  line-height: 1.2;
+  @include set-text-color($headline-color);
+}
+
+// /* CARDS */
+
+.cards{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.card{
+  @include set-background($primary-color);
+  border: 1px solid $secondary-color;
+  margin: 20px;
+  padding: 20px;
+  width:  350px;
+  min-height: 200px;
+  display: grid;
+  border-radius: 10px;
+  box-shadow: 0px 6px 10px $dark-color;
+  transition: all 0.2s;
+}
+
+.card:hover {
+  box-shadow: 0px 6px 10px $dark-color;
+  transform: scale(1.01);
+}
+#A, #B, #C, #D{
+  @include set-text-color($light-color);
+  display: flex;
+  margin: 35px;
+  font-size: 20px;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  padding: 10px;
+}
+.title
+{
+  font-size: 30px;
+  font-weight: bold;
+  @include set-text-color($light-color);
+  text-align: center;
+  margin: 20px;
+}
+.parag
+{
+  font-size: 20px;
+  font-weight: bold;
+  @include set-text-color($light-color);
+  text-align: center;
+  margin: 20px;
+}
+
+.note{
+  font-size: 20px;
+  font-weight: bold;
+  @include set-text-color($headline-color);
+  text-align: center;
+  margin: 100px;
+}
+
+/*Progress Bar*/
+.tooltip{ 
+  position:relative;
+  float:right;
+}
+.tooltip > .tooltip-inner {background-color: #eebf3f; padding:5px 15px; color:rgb(23,44,66); font-weight:bold; font-size:13px;}
+.popOver + .tooltip > .tooltip-arrow {  border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 5px solid #eebf3f;}
+
+section{
+  margin:100px auto; 
+  height:1000px;
+}
+.progress{
+  border-radius:0;
+  overflow:visible;
+}
+.progress-bar{
+   background:rgb(23,44,60); 
+  -webkit-transition: width 1.5s ease-in-out;
+  transition: width 1.5s ease-in-out;
+}
+/*start of progress bar*/
+.animated-progress {
+  width: 300px;
+  height: 30px;
+  border-radius: 5px;
+  margin: 20px auto;
+  border: 1px solid rgb(189, 113, 113);
+  overflow: hidden;
+  position: relative;
+}
+#start
+{
+//extend the button class for a reload button
+  @extend %btn;
+  display: flex;
+  @include set-background($primary-color);
+  border: 1px solid $secondary-color;
+  text-align: center;
+  margin: 20px auto;
+  font-size: 20px;
+  font-weight: bold;
+  @include set-text-color($light-color);
+}
+
+.animated-progress span {
+  height: 100%;
+  display: block;
+  width: 0;
+  color: rgb(255, 251, 251);
+  line-height: 30px;
+  position: absolute;
+  text-align: right;
+  padding-right: 5px;
+}
+
+.progress-blue span {
+  background-color: $secondary-color;
+}
+#progressBar{
+font-size: 20px;
+font-weight: bold;
+@include set-text-color($light-color);
+text-align: center;
+margin: 20px auto;
+}
+
+//extend the button class for a reload button
+#btn-reload{
+  @extend %btn;
+  display: flex;
+  @include set-background($primary-color);
+  border: 1px solid $secondary-color;
+  font-size: 20px;
+  font-weight: bold;
+  @include set-text-color($light-color);
+  text-align: center;
+  margin: 20px auto;
+}
+
+//extend title class for a title1 class and change the color
+.title1{
+  @extend .title;
+  @include set-text-color($secondary-color);
+}
+
+
+//center the elements
+.center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/*end of progress bar*/
+
+#scoreContainer
+{
+  margin-top: 56px;
+}
+
+// #wrongAnswers{
+//   border: 3px solid $secondary-color;
+//   @include set-background($primary-color);
+//   text-align: center;
+//   font-size: 20px;
+//   font-weight: bold;
+//   @include set-text-color($light-color);
+//   margin: 20px;
+//   padding: 20px;
+//   border-radius: 10px;
+//   overflow: auto;
+//   height: 300px;
+// }
+
+.wrongQuestionContainer
+{
+  border: 3px solid $secondary-color;
+  @include set-background($primary-color);
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  @include set-text-color($light-color);
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  overflow: auto;
+  height: 300px;
+}
+#wrongQuestion{
+  @include set-text-color($headline-color);
+}
+#correctAnswer{
+  color: #FD841F;
+}
+/* RESPONSIVE */
+
+@media (max-width: 1600px) {
+  .cards {
+    justify-content: center;
+  }
+}
+
+
+
+// _mobile.scss
+@media(max-width: 700px) {
+  .showcase {
+    height: 100px;
+
+    &-content {
+      text-align: center;
+
+      img {
+        display: none;
+      }
+    }
+  }
+}
