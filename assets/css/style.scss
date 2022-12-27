@@ -22,7 +22,7 @@ $danger-color:#A64942;
 }
 
 
-*{
+body{
   @include set-background($main-color);
   font-family: $font-stack;
   line-height: 1.6;
@@ -332,6 +332,8 @@ margin: 20px auto;
 }
 .wrongQuestionContainer{
   @include set-background($danger-color);
+  opacity: 0.8;
+
 }
 
 
