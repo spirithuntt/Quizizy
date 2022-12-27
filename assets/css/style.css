@@ -31,7 +31,7 @@ a {
   color: #f4f4f4;
 }
 .showcase nav a:hover {
-  color: #0b0b10;
+  color: #A64942;
 }
 .showcase-content {
   height: 100%;
@@ -68,7 +68,7 @@ a {
 }
 
 .btn-danger {
-  background-color: #0b0b10;
+  background-color: #A64942;
 }
 
 #start:hover {
@@ -284,6 +284,10 @@ section {
 
 #correctAnswer {
   color: #ff8906;
+}
+
+.wrongQuestionContainer {
+  background-color: #A64942;
 }
 
 /* RESPONSIVE */

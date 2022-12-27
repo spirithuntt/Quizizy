@@ -143,7 +143,7 @@ function nextQuestion(){
     document.getElementById("wrongAnswers").innerHTML = "";
     for(let wrongAnswer of wrongAnswers){
       // wrongAnswer["question"] + "<br>" + wrongAnswer.correctAnswer + wrongAnswer.answerExplanation + "<br><br>";
-      document.getElementById("wrongAnswers").innerHTML += `<div class="wrongQuestionContainer"><div id=wrongQuestion> the question that you answered wrong: ${wrongAnswer["question"]}</div><br> <div id=correctAnswer> the correct answer : ${wrongAnswer.correctAnswer}</div><br><div id=answerExplanation> why : ${wrongAnswer.answerExplanation}</div></div><br><br>`;
+      document.getElementById("wrongAnswers").innerHTML += `<div class="wrongQuestionContainer">you answered this question wrong<div id=wrongQuestion> the question that you answered wrong: ${wrongAnswer["question"]}</div><br> <div id=correctAnswer> the correct answer : ${wrongAnswer.correctAnswer}</div><br><div id=answerExplanation> why : ${wrongAnswer.answerExplanation}</div></div><br><br>`;
     };
   }
 }
