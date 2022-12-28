@@ -53,22 +53,14 @@ a {
   margin: 0 auto;
 }
 
-#start, #btn-reload, .btn-danger, .btn-primary {
+#start, #btn-reload {
   display: inline-block;
   border-radius: 5px;
   padding: 8px 20px;
   margin: 3px;
 }
-#start:hover, #btn-reload:hover, .btn-danger:hover, .btn-primary:hover {
+#start:hover, #btn-reload:hover {
   transform: scale(0.98);
-}
-
-.btn-primary {
-  background-color: #384c68;
-}
-
-.btn-danger {
-  background-color: #A64942;
 }
 
 #start:hover {
@@ -158,7 +150,6 @@ a {
   margin: 100px;
 }
 
-/*Progress Bar*/
 .tooltip {
   position: relative;
   float: right;
@@ -193,7 +184,6 @@ section {
   transition: width 1.5s ease-in-out;
 }
 
-/*start of progress bar*/
 .animated-progress {
   width: 300px;
   height: 30px;
@@ -260,7 +250,6 @@ section {
   flex-direction: column;
 }
 
-/*end of progress bar*/
 #scoreContainer {
   margin-top: 56px;
 }

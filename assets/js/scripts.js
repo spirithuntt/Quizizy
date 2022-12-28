@@ -118,7 +118,7 @@ function startQuiz(){
   showProgress();
 }
 
-hamid(questions);
+rand(questions);
 function showQuestion(){
   let q = questions[questionIndex];
   question.innerHTML = q.question;
@@ -147,7 +147,7 @@ function nextQuestion(){
   }
 }
 
-function hamid(array) {
+function rand(array) {
   array.sort(() => Math.random() - 0.5);
 }
 
