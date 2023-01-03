@@ -1,3 +1,4 @@
+<?php include_once("assets\php\scripts.php");?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,6 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Quizizy</title>
 </head>
-
     <header class="showcase">
         <div class="container">
             <nav>
