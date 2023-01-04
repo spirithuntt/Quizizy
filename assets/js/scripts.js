@@ -73,28 +73,7 @@ function nextQuestion(){
     document.getElementById("score").innerHTML ="You got " + score + " out of " + questions.length + " correct";
     document.getElementById("bestScore").innerHTML = "Your best score is " + getBestScore(score) + " out of " + questions.length;
     document.getElementById("scoreContainer").style.display = "block";
-    document.getElementById("wrongAnswers").innerHTML = "";
-
-
-      
-//using ajax to get the answers from php file
-let answers = [];
-$.ajax({
-  //send an HTTP GET request to the specified URL
-  url: "http://localhost/Quizizy/hamidd.php",
-  type: "GET",
-  dataType: "json",
-  //The callback function,data, which represents the data that was returned by the server,
-
-  success: function(data) {
-    // the callback function is setting the  value of the questions array to the value of data.
-    answers = data;
-    console.log(answers);
-  },
-  error: function(error){
-    console.log(error);
-  },
-});
+    document.getElementById("wrongAnswers").innerHTML = "";xx
     for(let wrongAnswer of wrongAnswers){
       document.getElementById("wrongAnswers").innerHTML += `<div class="wrongQuestionContainer">you answered this question wrong :<div id=wrongQuestion> the question: ${wrongAnswer["question"]}</div><br> <div id=correctAnswer> the correct answer : ${wrongAnswer.correctAnswer}</div><br><div id=answerExplanation> why : ${wrongAnswer.answerExplanation}</div></div><br><br>`;
       
