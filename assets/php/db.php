@@ -6,9 +6,7 @@ class Database{
     private $username;
     private $db;
     private $dbpass;
-    private $con;
-    //db connect
-    
+    private $con;    
 
     public function __construct()
     {

@@ -12,5 +12,4 @@ class question extends Database{
             return $result;
         }
     }
-
 }

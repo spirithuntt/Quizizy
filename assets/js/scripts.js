@@ -16,14 +16,14 @@ $.ajax({
   url: "http://localhost/Quizizy/hamid.php",
   type: "GET",
   dataType: "json",
-  //The callback function,data, which represents the data that was returned by the server,
+  //The callback function,data,which represents the data that was returned by the server,
   success: function(data) {
   // the callback function is setting the  value of the questions array to the value of data.
     questions = data;
     lastQuestion = questions.length - 1;//the last index of the questions
     console.log(questions);
   },
-  error: function(error) {
+  error: function(error){
     console.log(error);
   },
 });
@@ -73,10 +73,9 @@ function nextQuestion(){
     document.getElementById("score").innerHTML ="You got " + score + " out of " + questions.length + " correct";
     document.getElementById("bestScore").innerHTML = "Your best score is " + getBestScore(score) + " out of " + questions.length;
     document.getElementById("scoreContainer").style.display = "block";
-    document.getElementById("wrongAnswers").innerHTML = "";xx
+    document.getElementById("wrongAnswers").innerHTML = "";
     for(let wrongAnswer of wrongAnswers){
-      document.getElementById("wrongAnswers").innerHTML += `<div class="wrongQuestionContainer">you answered this question wrong :<div id=wrongQuestion> the question: ${wrongAnswer["question"]}</div><br> <div id=correctAnswer> the correct answer : ${wrongAnswer.correctAnswer}</div><br><div id=answerExplanation> why : ${wrongAnswer.answerExplanation}</div></div><br><br>`;
-      
+      document.getElementById("wrongAnswers").innerHTML += `<div class="wrongQuestionContainer">you answered this question wrong :<div id=wrongQuestion> the question: ${wrongAnswer["question"]}</div><br> <div id=correctAnswer> the correct answer : ${wrongAnswer.correctAnswer}</div><br><div id=answerExplanation> why : ${wrongAnswer.answerExplanation}</div></div><br><br>`;   
     };
   }
 }
