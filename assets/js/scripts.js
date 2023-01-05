@@ -13,7 +13,7 @@ let questions = [];
 let lastQuestion;
 $.ajax({
   //send an HTTP GET request to the specified URL 
-  url: "http://localhost/Quizizy/hamid.php",
+  url: "http://localhost/Quizizy/get_questions.php",
   type: "GET",
   dataType: "json",
   //The callback function,data,which represents the data that was returned by the server,

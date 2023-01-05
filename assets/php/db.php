@@ -1,9 +1,9 @@
 <?php
 
-// class db
+//class db
 class Database{
     private $host;
-    private $username;
+   private $username;
     private $db;
     private $dbpass;
     private $con;    
