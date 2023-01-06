@@ -43,7 +43,7 @@ function startQuiz(){
   showProgress();
 }
 
-rand(questions);
+// rand(questions);
 function showQuestion(){
   let q = questions[questionIndex];
   question.innerHTML = q.question;
@@ -58,9 +58,9 @@ function nextQuestion(){
     showProgress();
 }
 
-function rand(array) {
-  array.sort(() => Math.random() - 0.5);
-}
+// function rand(array) {
+//   array.sort(() => Math.random() - 0.5);
+// }
 
 
 
@@ -83,7 +83,7 @@ let userAnswers = [];
 function collectAnswer(answer)
 {
   //store the question and the answer selected by the user
-  let userAnswer = {
+  let userAnswer ={
     id: questions[questionIndex].id,
     question: questions[questionIndex].question,
     correct: answer
@@ -116,7 +116,17 @@ else{
 
 function checkAnswers(){
   //sort the answers by id
-  userAnswers.sort((a, b) => (a.id > b.id) ? 1 : -1);
+  userAnswers.sort(function(a, b) {
+    if(a.id < b.id) 
+    {
+       return -1; 
+    }
+    else
+    {
+      return 1;
+    }
+  });
+  
   for(let i = 0; i < userAnswers.length; i++){
     if(userAnswers[i].correct == answers[i].correct){
       score++;
@@ -131,9 +141,9 @@ function checkAnswers(){
   document.getElementById("bestScore").innerHTML = "Your best score is " + getBestScore(score) + " out of " + questions.length;
   document.getElementById("scoreContainer").style.display = "block";
   document.getElementById("wrongAnswers").innerHTML = "";
-  for(let wrongAnswer of wrongAnswers){
-    document.getElementById("wrongAnswers").innerHTML += `<div class="wrongQuestionContainer">you answered this question wrong :<div id=wrongQuestion> the question: ${wrongAnswer["question"]}</div><br> <div id=correctAnswer> the correct answer : ${wrongAnswer.correctAnswer}</div><br><div id=answerExplanation> why : ${wrongAnswer.answerExplanation}</div></div><br><br>`;   
-  };
+  wrongAnswers.forEach(wrongAnswer => {
+    document.getElementById("wrongAnswers").innerHTML += `<div class="wrongQuestionContainer">you answered this question wrong :<div id=wrongQuestion> the question: ${wrongAnswer["question"]}</div><br> <div id=correctAnswer> the correct answer : ${wrongAnswer.correctAnswer}</div><br><div id=answerExplanation> why : ${wrongAnswer.answerExplanation}</div></div><br><br>`;
+  });
 }
 
 
