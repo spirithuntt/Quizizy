@@ -141,9 +141,9 @@ function nextQuestion(){
     document.getElementById("bestScore").innerHTML = "Your best score is " + getBestScore(score) + " out of " + questions.length;
     document.getElementById("scoreContainer").style.display = "block";
     document.getElementById("wrongAnswers").innerHTML = "";
-    for(let wrongAnswer of wrongAnswers){
+    wrongAnswers.forEach(wrongAnswer => {
       document.getElementById("wrongAnswers").innerHTML += `<div class="wrongQuestionContainer">you answered this question wrong :<div id=wrongQuestion> the question: ${wrongAnswer["question"]}</div><br> <div id=correctAnswer> the correct answer : ${wrongAnswer.correctAnswer}</div><br><div id=answerExplanation> why : ${wrongAnswer.answerExplanation}</div></div><br><br>`;
-    };
+    });
   }
 }
 
