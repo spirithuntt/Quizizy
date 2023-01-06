@@ -9,6 +9,7 @@ let quiz = document.getElementById("quiz");
 let progressBar = document.getElementById("progressBar");
 
 // Using ajax to get the questions from php file
+let answers = [];
 let questions = [];
 let lastQuestion;
 $.ajax({
@@ -27,15 +28,6 @@ $.ajax({
     console.log(error);
   },
 });
-
-
-
-
-
-
-
-
-console.log(questions);
 
 
 let questionIndex = 0;//first index of the questions
@@ -61,40 +53,90 @@ function showQuestion(){
   choiceD.innerHTML = q.choiceD;
 }
 function nextQuestion(){
-  if(questionIndex < lastQuestion){
     questionIndex++;
     showQuestion();
     showProgress();
-  }
-  else{
-    //end the quiz and show the score
-    quiz.style.display = "none";
-    progressBar.style.display = "none";
-    document.getElementById("score").innerHTML ="You got " + score + " out of " + questions.length + " correct";
-    document.getElementById("bestScore").innerHTML = "Your best score is " + getBestScore(score) + " out of " + questions.length;
-    document.getElementById("scoreContainer").style.display = "block";
-    document.getElementById("wrongAnswers").innerHTML = "";
-    for(let wrongAnswer of wrongAnswers){
-      document.getElementById("wrongAnswers").innerHTML += `<div class="wrongQuestionContainer">you answered this question wrong :<div id=wrongQuestion> the question: ${wrongAnswer["question"]}</div><br> <div id=correctAnswer> the correct answer : ${wrongAnswer.correctAnswer}</div><br><div id=answerExplanation> why : ${wrongAnswer.answerExplanation}</div></div><br><br>`;   
-    };
-  }
 }
 
 function rand(array) {
   array.sort(() => Math.random() - 0.5);
 }
 
-function checkAnswer(answer){
-  console.log(questions[questionIndex].question);
-  if(answer == questions[questionIndex].correct){
-    score++;
-    choice = "correct";
-  }
-  else{
-  showAnswer(questionIndex);
-  }
-  nextQuestion();
+
+
+
+
+
+// function checkAnswer(answer){
+//   console.log(questions[questionIndex].question);
+//   if(answer == questions[questionIndex].correct){
+//     score++;
+//     choice = "correct";
+//   }
+//   else{
+//   showAnswer(questionIndex);
+//   }
+//   nextQuestion();
+// }
+
+let userAnswers = [];
+function collectAnswer(answer)
+{
+  //store the question and the answer selected by the user
+  let userAnswer = {
+    id: questions[questionIndex].id,
+    question: questions[questionIndex].question,
+    correct: answer
 }
+userAnswers.push(userAnswer);
+if(userAnswers.length == questions.length){
+  //send the answers to the server
+  $.ajax({
+    //send an HTTP GET request to the specified URL
+    url: "http://localhost/Quizizy/get_answers.php",
+    type: "GET",
+    dataType: "json",
+    //The callback function,data,which represents the data that was returned by the server,
+    success: function(data) {
+    // the callback function is setting the  value of the questions array to the value of data.
+      answers = data;
+      console.log(answers);
+      checkAnswers();
+    },
+    error: function(error){
+      console.log(error);
+    },
+  });
+}
+else{
+  //go to next question
+  nextQuestion();
+  } 
+}
+
+function checkAnswers(){
+  //sort the answers by id
+  userAnswers.sort((a, b) => (a.id > b.id) ? 1 : -1);
+  for(let i = 0; i < userAnswers.length; i++){
+    if(userAnswers[i].correct == answers[i].correct){
+      score++;
+    }
+    else{
+      showAnswer(i);
+    }
+  }
+  quiz.style.display = "none";
+    progressBar.style.display = "none";
+  document.getElementById("score").innerHTML ="You got " + score + " out of " + questions.length + " correct";
+  document.getElementById("bestScore").innerHTML = "Your best score is " + getBestScore(score) + " out of " + questions.length;
+  document.getElementById("scoreContainer").style.display = "block";
+  document.getElementById("wrongAnswers").innerHTML = "";
+  for(let wrongAnswer of wrongAnswers){
+    document.getElementById("wrongAnswers").innerHTML += `<div class="wrongQuestionContainer">you answered this question wrong :<div id=wrongQuestion> the question: ${wrongAnswer["question"]}</div><br> <div id=correctAnswer> the correct answer : ${wrongAnswer.correctAnswer}</div><br><div id=answerExplanation> why : ${wrongAnswer.answerExplanation}</div></div><br><br>`;   
+  };
+}
+
+
 
 function showProgress(){
   let scorePercent = Math.round(100 * questionIndex/questions.length);
@@ -110,6 +152,7 @@ function showProgress(){
     $(this).text($(this).attr("data-progress") + "%");
   });
 }
+
 function getBestScore(score){
   let bestScore = localStorage.getItem("bestScore");
   if(score > bestScore){
@@ -123,9 +166,9 @@ function showAnswer(questionIndex)
 {
   choice = "wrong";
   let wrongAnswer = {
-    question: questions[questionIndex].question,
-    correctAnswer: questions[questionIndex].correct,
-    answerExplanation: questions[questionIndex].answer,
+    question: userAnswers[questionIndex].question,
+    correctAnswer: answers[questionIndex].correct,
+    answerExplanation: answers[questionIndex].answer,
 };
 wrongAnswers.push(wrongAnswer);
 }

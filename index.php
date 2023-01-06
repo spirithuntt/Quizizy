@@ -40,10 +40,10 @@
 </div>
 <!--End Animated Progress Bar-->
     <div class="cards">
-      <button class="card" id="A" onclick="checkAnswer('A');"></button>
-      <button class="card" id="B" onclick="checkAnswer('B');"></button>
-      <button class="card" id="C" onclick="checkAnswer('C');"></button>
-      <button class="card" id="D" onclick="checkAnswer('D');"></button>
+      <button class="card" id="A" onclick="collectAnswer('A');"></button>
+      <button class="card" id="B" onclick="collectAnswer('B');"></button>
+      <button class="card" id="C" onclick="collectAnswer('C');"></button>
+      <button class="card" id="D" onclick="collectAnswer('D');"></button>
     </div>
 </div>
 <!-- score result -->
